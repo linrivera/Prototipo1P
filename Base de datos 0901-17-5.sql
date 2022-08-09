@@ -1,41 +1,78 @@
-DROP DATABASE sic;
 CREATE DATABASE sic;
 USE sic;
 
-CREATE TABLE bodegas(
-	codigo_bodega VARCHAR(5) PRIMARY KEY,
-    nombre_bodega VARCHAR(60),
-    estatus_bodega VARCHAR(1)
-) ENGINE=INNODB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `SIC`.`tbl_linea` (
+ `PK_codigo_linea` INT NOT NULL,
+   `nombre_linea` VARCHAR(35) NOT NULL,
+  `estatus_linea` TINYINT(2) NOT NULL,
+  PRIMARY KEY (`PK_codigo_linea`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE lineas(
-	codigo_linea VARCHAR(5) PRIMARY KEY,
-    nombre_linea VARCHAR(60),
-    estatus_linea VARCHAR(1)
-) ENGINE=INNODB DEFAULT CHARSET=latin1;
 
-CREATE TABLE marcas(
-	codigo_marca VARCHAR(5) PRIMARY KEY,
-    nombre_marca VARCHAR(60),
-    estatus_marca VARCHAR(1)
-) ENGINE=INNODB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `SIC`.`tbl_marca` (
+ `PK_codigo_marca` INT NOT NULL,
+   `nombre_marca` VARCHAR(35) NOT NULL,
+  `estatus_marca` TINYINT(2) NOT NULL,
+  PRIMARY KEY (`PK_codigo_marca`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
-CREATE TABLE productos(
-	codigo_producto VARCHAR(18) PRIMARY KEY,
-    nombre_producto VARCHAR(60),
-    codigo_linea VARCHAR(5),
-    codigo_marca VARCHAR(5),
-    existencia_producto FLOAT(10,2),
-    estatus_producto VARCHAR(1),
-    FOREIGN KEY (codigo_linea) REFERENCES lineas(codigo_linea),
-    FOREIGN KEY (codigo_marca) REFERENCES marcas(codigo_marca)
-) ENGINE=INNODB DEFAULT CHARSET=latin1;
 
-CREATE TABLE existencias(
-	codigo_bodega VARCHAR(5),
-    codigo_producto VARCHAR(18),
-    saldo_existencia FLOAT(10,2),
-    PRIMARY KEY (codigo_bodega, codigo_producto),
-	FOREIGN KEY (codigo_bodega) REFERENCES bodegas(codigo_bodega),
-    FOREIGN KEY (codigo_producto) REFERENCES productos(codigo_producto)
-) ENGINE=INNODB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `SIC`.`tbl_bodega` (
+ `PK_codigo_bodega` INT NOT NULL,
+   `nombre_bodega` VARCHAR(35) NOT NULL,
+  `estatus_bodega` TINYINT(2) NOT NULL,
+  PRIMARY KEY (`PK_codigo_bodega`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+CREATE TABLE IF NOT EXISTS `SIC`.`tbl_unidad` (
+ `PK_codigo_unidad` INT NOT NULL,
+   `unidad_entrada` VARCHAR(35) NOT NULL,
+  `unidad_salida` VARCHAR(35) NOT NULL,
+  PRIMARY KEY (`PK_codigo_unidad`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `SIC`.`tbl_producto` (
+ `PK_codigo_producto` INT NOT NULL,
+   `nombre_producto` VARCHAR(35) NOT NULL,
+  `descripcion_producto` VARCHAR(35) NOT NULL,
+  `precio_producto` INT(10) NOT NULL,
+  `costo_producto` INT (10) NOT NULL,
+  `estatus_producto` TINYINT(2) NOT NULL,
+  `codigo_linea` INT NOT NULL,
+  `codigo_marca` INT NOT NULL,
+  `codigo_bodega` INT NOT NULL,
+  `codigo_unidad` INT NOT NULL,
+  
+  PRIMARY KEY (
+  `PK_codigo_producto`,
+  `codigo_linea`,
+  `codigo_marca`,
+  `codigo_bodega`,
+  `codigo_unidad`
+),
+  CONSTRAINT `fk_codigo_linea`
+  FOREIGN KEY (`codigo_linea`)
+REFERENCES `SIC`.`tbl_linea` (`PK_codigo_linea`),
+
+CONSTRAINT `fk_codigo_marca`
+FOREIGN KEY (`codigo_marca`)
+REFERENCES `SIC`.`tbl_marca` (`PK_codigo_marca`),   
+  
+CONSTRAINT `fk_codigo_bodega` 
+FOREIGN KEY (`codigo_bodega`)
+REFERENCES `SIC`.`tbl_bodega` (`PK_codigo_bodega`),
+ 
+ CONSTRAINT `fk_codigo_unidad1` 
+ FOREIGN KEY (`codigo_unidad`)
+REFERENCES `SIC`.`tbl_unidad` (`PK_codigo_unidad`)
+   
+  
+  )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
