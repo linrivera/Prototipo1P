@@ -19,7 +19,7 @@ import javax.swing.UIManager;
  *
  *
  */
-public class MDIComercial extends javax.swing.JFrame {
+public class MDIAgricola extends javax.swing.JFrame {
 
     private Mantenimiento_Producto MantenimientoProducto;
     private Mantenimiento_Bodega Mantenimiento_Bodega;
@@ -32,7 +32,7 @@ public class MDIComercial extends javax.swing.JFrame {
     
     public static JLabel logo = new JLabel();
 
-    public MDIComercial() throws UnknownHostException {
+    public MDIAgricola() throws UnknownHostException {
         initComponents();
         logo(0);
 
@@ -273,9 +273,9 @@ public class MDIComercial extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new MDIComercial().setVisible(true);
+                    new MDIAgricola().setVisible(true);
                 } catch (UnknownHostException ex) {
-                    Logger.getLogger(MDIComercial.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MDIAgricola.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
