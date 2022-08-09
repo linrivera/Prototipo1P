@@ -5,17 +5,100 @@
  */
 package Agricolas.vista;
 
+import inicio.home;
+import java.awt.*;
+import javax.swing.*;
 /**
  *
- * @author linri
+ * @author Joselyne
  */
 public class Loging extends javax.swing.JFrame {
-
+    private Component confirmation;
+    private String usuario,password;
+    public login() {
+        initComponents();
+        setLocationRelativeTo(null);
+        txtUsuario.setFocusable(true);
+    }
+    public void datos(String us, String pas){
+        usuario = "Admin"; 
+        password = "admin";
+    }
     /**
      * Creates new form Loging
      */
     public Loging() {
-        initComponents();
+        private void initComponents(){
+         btn_iniciar = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
+        lbl_titulo = new javax.swing.JLabel();
+        lbl_banner = new javax.swing.JLabel();
+        lbl_background = new javax.swing.JLabel();
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_iniciar.setBackground(new java.awt.Color(0, 162, 255));
+        btn_iniciar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_iniciar.setText("LOGIN");
+        btn_iniciar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_iniciar.addActionListener(new java.awt.event.ActionListener() }
+        
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_iniciarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 330, 40));
+
+        btn_cancelar.setBackground(new java.awt.Color(0, 162, 255));
+        btn_cancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_cancelar.setText("CANCELAR");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 330, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/user_ico.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, 40));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Power - Lock.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 40, 40));
+
+        txtUsuario.setBackground(new java.awt.Color(224, 224, 224));
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(23, 160, 249));
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 280, 40));
+
+        txtPassword.setBackground(new java.awt.Color(224, 224, 224));
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtPassword.setForeground(new java.awt.Color(23, 160, 249));
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 280, 40));
+
+        lbl_titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbl_titulo.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_titulo.setText("INICIAR SESIÓN");
+        getContentPane().add(lbl_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+
+        lbl_banner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/banner.png"))); // NOI18N
+        getContentPane().add(lbl_banner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 60));
+
+        lbl_background.setBackground(new java.awt.Color(0, 204, 204));
+        lbl_background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.png"))); // NOI18N
+        getContentPane().add(lbl_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 340));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
     }
 
     /**
@@ -46,8 +129,18 @@ public class Loging extends javax.swing.JFrame {
         jLabel2.setText("Contraseña");
 
         Entrar.setText("Entrar");
+        Entrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EntrarActionPerformed(evt);
+            }
+        });
 
         Cancelar.setText("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,6 +201,54 @@ public class Loging extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
+        // TODO add your handling code here:
+        //GEN-FIRST:event_btn_iniciarActionPerformed
+    datos(usuario, password);
+    if(usuario.equals(txtUsuario.getText()) && password.equals(txtPassword.getText())){
+         home st = new home();
+         st.setVisible(true);
+         this.dispose();
+    }else if(txtUsuario.getText().equals("") && txtPassword.getText().equals("")){
+        JOptionPane.showMessageDialog(this,"Usuario y/o Contraseña estan vacios\nIngrese los por favor.");
+        txtUsuario.setFocusable(true);
+    }else if(txtUsuario.getText().equals("")){
+        JOptionPane.showMessageDialog(this,"Usuario está vacio\nIngrese lo por favor.");
+        txtUsuario.setFocusable(true);
+    }else if(txtPassword.getText().equals("")){
+        JOptionPane.showMessageDialog(this,"Contraseña está vacio\nIngrese lo por favor.");
+        txtPassword.setFocusable(true);
+    }
+    else if(txtUsuario.getText().compareTo(usuario)!=0 && txtPassword.getText().compareTo(password)!=0){
+        JOptionPane.showMessageDialog(this,"Usuario y/o Contraseña no válidos\nIngrese nuevamente.");
+         txtUsuario.setFocusable(true);
+    }
+    else if(txtUsuario.getText().compareTo(usuario)!=0){
+        JOptionPane.showMessageDialog(this,"Usuario no válido\nIngrese nuevamente.");
+        txtUsuario.setFocusable(true);
+    }else if(txtPassword.getText().compareTo(password)!=0){
+        JOptionPane.showMessageDialog(this,"Contraseña no válida\nIngrese nuevamente.");
+        txtPassword.setFocusable(true);
+    }
+}//GEN-LAST:event_btn_iniciarActionPerformed
+    }//GEN-LAST:event_EntrarActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        // TODO add your handling code here:
+        /GEN-FIRST:event_btn_cancelarActionPerformed
+Object [] opciones ={"Aceptar","Cancelar"};
+int eleccion = JOptionPane.showOptionDialog(confirmation,"Desea salir?","Confirmacion",
+JOptionPane.YES_NO_OPTION,
+JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+    if (eleccion == JOptionPane.YES_OPTION)
+    {
+    System.exit(0);
+    }else{
+
+    }
+}//GEN-LAST:event_btn_cancelarActionPerformed
+    }//GEN-LAST:event_CancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -125,17 +266,26 @@ public class Loging extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Loging.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Loging.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Loging.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Loging.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
 
         /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                new login().setVisible(true);
+            }
+        });
+    }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Loging().setVisible(true);
